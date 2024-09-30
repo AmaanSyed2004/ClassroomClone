@@ -11,7 +11,8 @@ app.use(express.json());
 app.use(allowCors);
 app.use(cookieParser());
 
-app.use("/", require("./routes/routes"));
+app.use("/sign/", require("./routes/routes"));
+app.use("/course/", require("./routes/courseRoutes"));
 app.listen(port, () => {
   console.log(`Listening at http://localhost:${port}`);
 });
