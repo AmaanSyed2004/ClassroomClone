@@ -4,6 +4,10 @@ const courseSchema= new mongoose.Schema({
         type:String,
         required:true,
     },
+    courseID:{
+        type:String,
+        default: require('crypto').randomBytes(3).toString('hex') + "-" + require('crypto').randomBytes(3).toString('hex'),
+    },
     createdBy:{
         type:mongoose.Schema.Types.ObjectId,
         ref:'User',
