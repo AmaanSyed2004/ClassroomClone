@@ -1,8 +1,14 @@
 const express = require("express");
-const createCourse = require("../controllers/createCourse");
+const createCourse = require("../controllers/CourseControllers/createCourse");
 const checkTeacher = require("../middleware/verifyTeacher");
+const checkStudent = require("../middleware/verifyStudent");
+const joinCourse = require("../controllers/CourseControllers/joinCourse");
+const deleteCourse = require("../controllers/CourseControllers/deleteCourse");
 
 const router = express.Router();
 
-router.post("/create", checkTeacher,createCourse);
+router.post("/create", checkTeacher, createCourse);
+router.post("/join", checkStudent, joinCourse);
+router.post("/delete", checkTeacher, deleteCourse);
+
 module.exports = router;
