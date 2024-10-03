@@ -10,5 +10,5 @@ const router = express.Router();
 router.post("/create", checkTeacher, createCourse);
 router.post("/join", checkStudent, joinCourse);
 router.post("/delete", checkTeacher, deleteCourse);
-
+router.post("/sendInvite", checkTeacher, sendInvitation);
 module.exports = router;
