@@ -4,6 +4,7 @@ const checkTeacher = require("../middleware/verifyTeacher");
 const checkStudent = require("../middleware/verifyStudent");
 const joinCourse = require("../controllers/CourseControllers/joinCourse");
 const deleteCourse = require("../controllers/CourseControllers/deleteCourse");
+const sendInvitation = require("../controllers/CourseControllers/sendInvitation");
 
 const router = express.Router();
 

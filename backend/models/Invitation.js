@@ -1,11 +1,11 @@
 const mongoose= require('mongoose');
 const invitationSchema= new mongoose.Schema({
     email:{
-        type:string,
+        type: String,
         required:true,
     },
     courseID:{
-        type:string,
+        type: String,
         required:true,
     },
     sender:{
