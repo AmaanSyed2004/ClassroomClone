@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useToast } from "@/hooks/use-toast";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 interface LoginProps {
   toggleForm: () => void;
@@ -14,33 +15,36 @@ export const Login: React.FC<LoginProps> = ({ toggleForm }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const { toast } = useToast();
-
+  const navigate = useNavigate();
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-        const response = await axios.post(
-          "http://localhost:3000/sign/login",
-          {
-            email,
-            password
-          }
-        );
-        console.log(response);
-        toast({
-          title: "Success!",
-          description: response.data.message,
-        });
-      } catch (e: any) {
-        console.error(e)
-        const errorMessage = e.response?.data?.message ?? "Please try again!";
-        toast({
-          variant: "destructive",
-          title: "Oh No! An error occured!",
-          description: errorMessage
-        });
-      }
+      const response = await axios.post(
+        "http://localhost:3000/sign/login",
+        {
+          email,
+          password,
+        },
+        {
+          withCredentials: true,
+        }
+      );
+      console.log(response);
+      toast({
+        title: "Success!",
+        description: response.data.message,
+      });
+      navigate("/home");
+    } catch (e: any) {
+      console.error(e);
+      const errorMessage = e.response?.data?.message ?? "Please try again!";
+      toast({
+        variant: "destructive",
+        title: "Oh No! An error occured!",
+        description: errorMessage,
+      });
+    }
   };
-  
 
   return (
     <div>
