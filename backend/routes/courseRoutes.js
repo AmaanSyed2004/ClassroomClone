@@ -7,12 +7,15 @@ const deleteCourse = require("../controllers/CourseControllers/deleteCourse");
 const sendInvitation = require("../controllers/CourseControllers/sendInvitation");
 const getCourses = require("../controllers/CourseControllers/getCourses");
 const getCourse = require("../controllers/CourseControllers/getCourse");
+const getCoursesUnderTeacher = require("../controllers/CourseControllers/getCoursesUnderTeacher");
+const checkStudentOrTeacher = require("../middleware/checkTeacherOrStudent");
 const router = express.Router();
 
 router.post("/create", checkTeacher, createCourse);
 router.post("/join", checkStudent, joinCourse);
 router.post("/delete", checkTeacher, deleteCourse);
 router.post("/sendInvite", checkTeacher, sendInvitation);
-router.get("/get",checkStudent,getCourses);
-router.get('/get/:id',checkStudent,getCourse);
+router.get("/get", checkStudent,getCourses);
+router.get("/getUnderTeacher", checkTeacher, getCoursesUnderTeacher);
+router.get('/get/:id',checkStudentOrTeacher ,getCourse);
 module.exports = router;
