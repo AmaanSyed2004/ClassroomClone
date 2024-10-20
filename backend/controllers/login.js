@@ -19,7 +19,6 @@ const login= async(req,res)=>{
         //user is verified now, send a cookie
         const token= generateToken(user);
         res.cookie("token",token,{
-            httpOnly:true,
             sameSite:true,
             maxAge: 3600000,
         });

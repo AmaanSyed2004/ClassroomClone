@@ -21,7 +21,6 @@ const register = async (req, res) => {
     await user.save();
     const token= generateToken(user);
     res.cookie("token",token,{
-        httpOnly:true,
         sameSite:true,
         maxAge: 3600000,
     });
