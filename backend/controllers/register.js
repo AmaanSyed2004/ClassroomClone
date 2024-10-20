@@ -26,7 +26,7 @@ const register = async (req, res) => {
     });
     res
       .status(201)
-      .json({ message: `${role} ${name} registered successfully!` });
+      .json({ message: `${role} ${name} registered successfully!`, role: role });
   } catch (error) {
     console.log(error);
     res.status(500).json({ message: "Internal server error" });

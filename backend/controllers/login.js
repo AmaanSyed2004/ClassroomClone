@@ -22,7 +22,7 @@ const login= async(req,res)=>{
             sameSite:true,
             maxAge: 3600000,
         });
-        res.status(200).json({message:"Logged in successfully"});
+        res.status(200).json({message:"Logged in successfully", role:user.role});
     }catch(error){
         console.log(error);
         res.status(500).json({message:"Internal server error"});
