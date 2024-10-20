@@ -6,7 +6,7 @@ import { JSX } from "react/jsx-runtime"
 
 export default function NavBar() {
   return (
-    <div className="flex items-center justify-between px-4 py-2 bg-[#eeeeee] w-[100vw] ">
+    <div className="flex items-center justify-between px-4 py-2 bg-[#eeeeee] h-20 ">
       <Link to="#" className="flex items-center gap-2" >
         <MountainIcon className="h-6 w-6" />
         <span className="text-3xl font-semibold">ClassBridge</span>
