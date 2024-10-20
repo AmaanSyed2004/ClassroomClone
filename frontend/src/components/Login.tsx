@@ -29,7 +29,6 @@ export const Login: React.FC<LoginProps> = ({ toggleForm }) => {
           withCredentials: true,
         }
       );
-      console.log(response);
       toast({
         title: "Success!",
         description: response.data.message,

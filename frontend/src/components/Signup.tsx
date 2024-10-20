@@ -18,8 +18,8 @@ export const Signup: React.FC<SignupProps> = ({ toggleForm }) => {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [role, setRole] = useState("");
   const {toast}= useToast();
+  const navigate= useNavigate();
   const handleSubmit = async(e: React.FormEvent) => {
-    const navigate= useNavigate();
     e.preventDefault();
     if (password !== confirmPassword) {
       toast({
@@ -35,14 +35,13 @@ export const Signup: React.FC<SignupProps> = ({ toggleForm }) => {
             email,
             password,
             role
-            });
-            console.log(response);
-            toast({
-              title: "Success!",
-              description: response.data.message,
-            });
-            navigate("/home");
-            
+            },{withCredentials: true});
+        console.log(response.data)
+        toast({
+            title: "Success!",
+            description: response.data.message
+        });
+        navigate('/home')
             
     }   catch (e: any) {
         console.error(e)
