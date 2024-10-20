@@ -5,7 +5,7 @@ import AuthContext from "../context/AuthContext.tsx";
 import { toast } from "@/hooks/use-toast.ts";
 import { ClassesProvider } from "../context/ClassesContext";
 
-const ProtectedRoute: React.FC = () => {
+const ProtectedRouteTeacher: React.FC = () => {
   const [isAuth, setisAuth] = useState(false);
   const [loading, setLoading] = useState(true);
   const [userData, setUserData] = useState(null);
@@ -19,7 +19,7 @@ const ProtectedRoute: React.FC = () => {
         console.log(response.data.user)
         setUserData(response.data.user);
         setisAuth(response.data.isAuth);
-        setRole(response.data.user.role=="student"? true:false);
+        setRole(response.data.user.role=="teacher"? true:false);
       } catch (err) {
         console.error(err);
         toast({
@@ -45,4 +45,4 @@ const ProtectedRoute: React.FC = () => {
     <Navigate to="/auth" />
   );
 };
-export default ProtectedRoute;
+export default ProtectedRouteTeacher;

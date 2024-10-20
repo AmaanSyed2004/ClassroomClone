@@ -12,9 +12,13 @@ interface ClassCardProps {
   Title: string;
   Description: string;
   Teacher: string;
+  id:string;
 }
 
-export default function ClassCard({ Title, Description, Teacher }: ClassCardProps) {
+export default function ClassCard({ Title, Description, Teacher,id }: ClassCardProps) {
+    function handleClick(){
+        window.location.href=`/home/course/${id}`;
+    }
   return (
     <>
       <Card className="w-1/4 bg-[#eeeeee] ">
@@ -24,7 +28,7 @@ export default function ClassCard({ Title, Description, Teacher }: ClassCardProp
         </CardHeader>
         <CardContent>{Description}</CardContent>
         <CardFooter>
-          <Button variant="outline" size="default">
+          <Button variant="outline" size="default" onClick={handleClick}>
             View Class
           </Button>
         </CardFooter>

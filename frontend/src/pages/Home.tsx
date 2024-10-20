@@ -1,24 +1,19 @@
+import React, { useEffect, useState } from "react";
 import ClassCard from "@/components/ClassCard";
-import axios from "axios";
+import { useClasses } from "@/context/ClassesContext";
 import { jwtDecode } from "jwt-decode";
-import React, { useEffect } from "react";
 
 interface DecodedToken {
   name: string;
 }
 
 const Home: React.FC = () => {
-  const [classes, setClasses] = React.useState<any[]>([]);
-  const [name, setName] = React.useState<string>("");
+  const { classes } = useClasses(); 
+  const [name, setName] = useState<string>("");
+
   useEffect(() => {
-    try {
-      const getClasses = async () => {
-        const response = await axios.get("http://localhost:3000/course/get", {
-          withCredentials: true,
-        });
-        setClasses(response.data.courses);
-      };
-      const getUserNameFromToken = () => {
+    const getUserNameFromToken = () => {
+      try {
         const cookie = document.cookie
           .split("; ")
           .find((row) => row.startsWith("token="));
@@ -27,13 +22,14 @@ const Home: React.FC = () => {
           const decodedToken: DecodedToken = jwtDecode(token);
           setName(decodedToken.name);
         }
-      };
-      getClasses();
-      getUserNameFromToken();
-    } catch (error) {
-      console.log(error);
-    }
+      } catch (error) {
+        console.log("Error decoding token:", error);
+      }
+    };
+
+    getUserNameFromToken();
   }, []);
+
   return (
     <>
       <div className="flex items-center justify-center">
@@ -47,6 +43,7 @@ const Home: React.FC = () => {
               Description={course.description}
               Teacher={course.teacher}
               key={course.title}
+              id={course.courseID}
             />
           );
         })

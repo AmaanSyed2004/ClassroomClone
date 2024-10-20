@@ -19,22 +19,24 @@ export default function NavBar() {
           </Button>
         </SheetTrigger>
         <SheetContent side="left">
-          <div className="grid w-[200px] p-4">
-            <Link to="#" className="text-xl font-medium hover:underline underline-offset-4" >
+          <div className="flex flex-col h-full justify-center items-center">
+          <div className="w-[200px]  p-4 flex flex-col h-1/2 justify-between">
+            <Link to="/home" className="text-3xl font-medium hover:underline underline-offset-4" >
               Home
             </Link>
-            <Link to="#" className="text-xl font-medium hover:underline underline-offset-4" >
-              About
+            <Link to="/home/join" className="text-3xl font-medium hover:underline underline-offset-4" >
+              Join a Class
             </Link>
-            <Link to="#" className="text-xl font-medium hover:underline underline-offset-4" >
-              Services
+            <Link to="#" className="text-3xl font-medium hover:underline underline-offset-4" >
+              z
             </Link>
-            <Link to="#" className="text-xl font-medium hover:underline underline-offset-4" >
+            <Link to="#" className="text-3xl font-medium hover:underline underline-offset-4" >
               Portfolio
             </Link>
-            <Link to="#" className="text-xl font-medium hover:underline underline-offset-4" >
-              Contact
+            <Link to="#" className="text-3xl font-medium hover:underline underline-offset-4" >
+              Logout
             </Link>
+          </div>
           </div>
         </SheetContent>
       </Sheet>

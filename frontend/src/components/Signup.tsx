@@ -41,7 +41,7 @@ export const Signup: React.FC<SignupProps> = ({ toggleForm }) => {
             title: "Success!",
             description: response.data.message
         });
-        navigate('/home')
+      response.data.role=="teacher"?navigate("/HomePage"):navigate("/home");
             
     }   catch (e: any) {
         console.error(e)
