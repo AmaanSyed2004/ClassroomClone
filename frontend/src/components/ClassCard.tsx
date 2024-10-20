@@ -21,7 +21,7 @@ export default function ClassCard({ Title, Description, Teacher,id }: ClassCardP
     }
   return (
     <>
-      <Card className="w-1/4 bg-[#eeeeee] ">
+      <Card className="w-[400px] min-h-[300px] bg-[#eeeeee] ">
         <CardHeader>
           <CardTitle>{Title}</CardTitle>
           <CardDescription>{Teacher}</CardDescription>

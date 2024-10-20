@@ -3,7 +3,7 @@ import { Navigate, Outlet } from "react-router-dom";
 import axios from "axios";
 import AuthContext from "../context/AuthContext.tsx";
 import { toast } from "@/hooks/use-toast.ts";
-import { ClassesProvider } from "../context/ClassesContext";
+import { ClassesProvider } from "../context/ClassesContextTeacher";
 
 const ProtectedRouteTeacher: React.FC = () => {
   const [isAuth, setisAuth] = useState(false);

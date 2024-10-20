@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react";
-import ClassCard from "@/components/ClassCard";
-import { useClasses } from "@/context/ClassesContext";
+import ClassCard from "@/components/teacher/ClassCardTeacher";
+import { useClasses } from "@/context/ClassesContextTeacher";
 import { jwtDecode } from "jwt-decode";
 
 interface DecodedToken {
   name: string;
 }
 
-const Home: React.FC = () => {
+const HomePage: React.FC = () => {
   const { classes } = useClasses(); 
   const [name, setName] = useState<string>("");
 
@@ -32,8 +32,9 @@ const Home: React.FC = () => {
 
   return (
     <>
-      <div className="flex items-center justify-center">
+      <div className="flex  flex-col pl-10 pt-24 pb-10 ">
         <h1 className="text-4xl font-semibold">Hello, {name}!</h1>
+        <h2 className="text-2xl font-semibold">Your classes:</h2>
       </div>
       <div className="flex justify-center items-center flex-wrap gap-12">
       {classes.length > 0 ? (
@@ -58,4 +59,4 @@ const Home: React.FC = () => {
   );
 };
 
-export default Home;
+export default HomePage;

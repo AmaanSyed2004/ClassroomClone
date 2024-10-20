@@ -7,7 +7,10 @@ import ProtectedRoute from "./components/ProtectedRoute";
 import Layout from "./components/Layout";
 import Join from "./pages/Join";
 import Class from "./pages/Class";
+import HomePage from "./pages/Teacher/HomePage";
 import ProtectedRouteTeacher from "./components/ProtectedRouteTeacher";
+import CreateClass from "./pages/Teacher/CreateClass";
+import ClassTeacher from "./pages/Teacher/ClassTeacher";
 function App() {
   return (
     <>
@@ -23,7 +26,11 @@ function App() {
             </Route>
           </Route>
           <Route path="/HomePage" element={<ProtectedRouteTeacher />}>
-            <Route index element={<div>Teacher</div>}/>
+            <Route element={<Layout/>}>
+              <Route index element={<HomePage/>}/>
+              <Route path="/HomePage/course/:id" element={<ClassTeacher/>} />
+              <Route path="/HomePage/create" element={<CreateClass/>} />
+            </Route>  
           </Route>
         </Routes>
       </BrowserRouter>
