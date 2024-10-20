@@ -9,6 +9,7 @@ const getCourses = require("../controllers/CourseControllers/getCourses");
 const getCourse = require("../controllers/CourseControllers/getCourse");
 const getCoursesUnderTeacher = require("../controllers/CourseControllers/getCoursesUnderTeacher");
 const checkStudentOrTeacher = require("../middleware/checkTeacherOrStudent");
+const addAnnouncement = require("../controllers/CourseControllers/addAnnouncement");
 const router = express.Router();
 
 router.post("/create", checkTeacher, createCourse);
@@ -18,4 +19,5 @@ router.post("/sendInvite", checkTeacher, sendInvitation);
 router.get("/get", checkStudent,getCourses);
 router.get("/getUnderTeacher", checkTeacher, getCoursesUnderTeacher);
 router.get('/get/:id',checkStudentOrTeacher ,getCourse);
+router.post('/addAnnouncement/:id', checkTeacher, addAnnouncement);
 module.exports = router;

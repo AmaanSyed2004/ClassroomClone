@@ -1,6 +1,19 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
+import { Button } from "@/components/ui/button"
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog"
+import { Input } from "@/components/ui/input"
+import { toast } from "@/hooks/use-toast";
+ 
 interface ClassDetailsProps {
   announcements: any[];
   assignments: any[];
@@ -50,7 +63,10 @@ const ClassTeacher: React.FC = () => {
       <h1 className="text-4xl font-semibold"> {classDetails.title}</h1>
       <p className="text-lg text-gray-600">{classDetails.description}</p>
       <div className="mt-4">
-        <h2 className="text-2xl font-semibold">Announcements</h2>
+        <div className="flex justify-between">
+          <h2 className="text-2xl font-semibold">Announcements</h2>
+          <DialogDemo id={id}/>
+        </div>
         {classDetails.announcements && classDetails.announcements.length > 0 ? (
           classDetails.announcements.map((announcement: any) => {
             return (
@@ -91,5 +107,56 @@ const ClassTeacher: React.FC = () => {
     </div>
   );
 };
+interface DialogDemoProps {
+  id: string | undefined;
+}
 
+function DialogDemo({ id }: DialogDemoProps) {
+  const[announcement,setAnnouncement]=useState("");
+  async function handleClick() {
+    try {
+      await axios.post(`http://localhost:3000/course/addAnnouncement/${id}`,{announcement},{withCredentials:true});
+      toast({
+        title:"Success",
+        variant:"default",
+        description: "Announcement added successfully",
+      })
+    } catch (error:any) {
+      toast({
+        title:"Error",
+        variant:"destructive",
+        description: error.response.message,
+      })
+    }
+
+  }
+  return (
+    <Dialog>
+      <DialogTrigger asChild>
+        <Button variant="outline">Add Announcement</Button>
+      </DialogTrigger>
+      <DialogContent className="sm:max-w-[425px]">
+        <DialogHeader>
+          <DialogTitle>Add Announcement</DialogTitle>
+          <DialogDescription>
+            Announce something to the class!
+          </DialogDescription>
+        </DialogHeader>
+        <div className="grid gap-4 py-4">
+          <div className="grid grid-cols-4 items-center gap-4">
+            <Input
+              value={announcement}
+              onChange={(e) => setAnnouncement(e.target.value)}
+              id="name"
+              className="col-span-4 h-20 row-span-2"
+            />
+          </div>
+        </div>
+        <DialogFooter>
+          <Button type="submit" onClick={handleClick}>Save changes</Button>
+        </DialogFooter>
+      </DialogContent>
+    </Dialog>
+  )
+}
 export default ClassTeacher;
