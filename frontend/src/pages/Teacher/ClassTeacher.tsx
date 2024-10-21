@@ -13,6 +13,7 @@ import {
 } from "@/components/ui/dialog"
 import { Input } from "@/components/ui/input"
 import { toast } from "@/hooks/use-toast";
+import DialogForAssignment from "@/components/teacher/DialogForAssignment";
  
 interface ClassDetailsProps {
   announcements: any[];
@@ -44,7 +45,7 @@ const ClassTeacher: React.FC = () => {
             withCredentials: true,
           }
         );
-        console.log(response.data);
+        console.log(response.data.course.assignments);
         setClassDetails(response.data.course);
       } catch (error) {
         console.error("Error fetching class details:", error);
@@ -62,6 +63,7 @@ const ClassTeacher: React.FC = () => {
     <div className="p-4 bg-[#f9f9f9]">
       <h1 className="text-4xl font-semibold"> {classDetails.title}</h1>
       <p className="text-lg text-gray-600">{classDetails.description}</p>
+      <p className="text-md text-gray-600">Course ID:{classDetails.courseID}</p>
       <div className="mt-4">
         <div className="flex justify-between">
           <h2 className="text-2xl font-semibold">Announcements</h2>
@@ -85,15 +87,18 @@ const ClassTeacher: React.FC = () => {
         )}
       </div>
       <div className="mt-4">
+        <div className="flex justify-between">
         <h2 className="text-2xl font-semibold">Assignments</h2>
-        { classDetails.assignments &&classDetails.assignments.length > 0 ? (
+        <DialogForAssignment id={id}/>
+        </div>
+        { classDetails.assignments && classDetails.assignments.length > 0 ? (
           classDetails.assignments.map((assignment: any) => {
             return (
               <div
                 key={assignment._id}
                 className="bg-white p-4 mt-2 rounded-md"
               >
-                <h3 className="text-xl font-semibold">{assignment.title}</h3>
+                <h3 className="text-xl font-semibold">{assignment.name}</h3>
                 <p className="text-gray-600">{assignment.description}</p>
               </div>
             );

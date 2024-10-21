@@ -11,6 +11,7 @@ import HomePage from "./pages/Teacher/HomePage";
 import ProtectedRouteTeacher from "./components/ProtectedRouteTeacher";
 import CreateClass from "./pages/Teacher/CreateClass";
 import ClassTeacher from "./pages/Teacher/ClassTeacher";
+import Invite from "./pages/Teacher/Invite";
 function App() {
   return (
     <>
@@ -30,6 +31,7 @@ function App() {
               <Route index element={<HomePage/>}/>
               <Route path="/HomePage/course/:id" element={<ClassTeacher/>} />
               <Route path="/HomePage/create" element={<CreateClass/>} />
+              <Route path="/HomePage/invite" element={<Invite/>} />
             </Route>  
           </Route>
         </Routes>
