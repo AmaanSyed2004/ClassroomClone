@@ -5,7 +5,7 @@ async function getCourse(req, res) {
   const { id } = req.params;
   // Find the course in the database
     try {
-        const course = await Course.findOne({ courseID:id }).populate("createdBy", "name");
+        const course = await Course.findOne({ courseID:id }).populate("createdBy", "name").populate('assignments');
         // If the course is not found, return an error
         if (!course) {
             return res.status(404).json({ message: "Course not found." });

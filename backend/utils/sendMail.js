@@ -13,7 +13,7 @@ const sendMail = async ({ email, courseID, title }) => {
       from: "amaansbackup@gmail.com",
       to: email,
       subject: "Hey There! You are invited to join a classroom!",
-      text: `Hey there! You have been invited to join ${title} by ${name}. Please use this code: ${courseID} `,
+      text: `Hey there! You have been invited to join ${title}. Please use this code: ${courseID} `,
     };
 
     // the function implicitly exectures the inner function to send the mail to the user as per the give email address

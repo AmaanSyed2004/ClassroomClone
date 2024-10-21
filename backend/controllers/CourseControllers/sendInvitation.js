@@ -1,7 +1,7 @@
 const Invitation = require("../../models/Invitation");
 const User = require("../../models/User");
 const sendMail = require("../../utils/sendMail");
-
+const Course = require("../../models/Course");
 const sendInvitation= async (req, res) => {
     const {email, courseID}=req.body;
     if(!email || !courseID){

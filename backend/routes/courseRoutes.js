@@ -10,6 +10,8 @@ const getCourse = require("../controllers/CourseControllers/getCourse");
 const getCoursesUnderTeacher = require("../controllers/CourseControllers/getCoursesUnderTeacher");
 const checkStudentOrTeacher = require("../middleware/checkTeacherOrStudent");
 const addAnnouncement = require("../controllers/CourseControllers/addAnnouncement");
+const getAssignments = require("../controllers/assignmentControllers/getAssignments");
+const createAssignment = require("../controllers/assignmentControllers/createAssignment");
 const router = express.Router();
 
 router.post("/create", checkTeacher, createCourse);
@@ -20,4 +22,6 @@ router.get("/get", checkStudent,getCourses);
 router.get("/getUnderTeacher", checkTeacher, getCoursesUnderTeacher);
 router.get('/get/:id',checkStudentOrTeacher ,getCourse);
 router.post('/addAnnouncement/:id', checkTeacher, addAnnouncement);
+router.get('/getAssignments',checkStudentOrTeacher, getAssignments);
+router.post('/createAssignment', checkTeacher, createAssignment);   
 module.exports = router;

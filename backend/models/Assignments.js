@@ -1,7 +1,7 @@
 const mongoose=require('mongoose');
 const AssignmentsSchema= new mongoose.Schema({
     courseID:{
-        type: mongoose.Schema.Types.ObjectId,
+        type:String,
         ref:'Course',
         required:true,
     },
@@ -14,14 +14,14 @@ const AssignmentsSchema= new mongoose.Schema({
         required:true,
     },
     dueDate:{
-        type:Date,
+        type:Date,  
         required:true,
     },
     maxMarks:{
         type:Number,
         required:true,
     },
-    submisions:[{
+    submissions:[{
         type:mongoose.Schema.Types.ObjectId,
         ref:'Submission',
     }],
@@ -53,3 +53,4 @@ AssignmentsSchema.pre('save',function(next){
 });
 const Assignment= mongoose.model('Assignment',AssignmentsSchema);
 module.exports=Assignment;
+// Example JSON data to test the Assignments model
