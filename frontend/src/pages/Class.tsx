@@ -77,7 +77,7 @@ const Class: React.FC = () => {
                 key={assignment._id}
                 className="bg-white p-4 mt-2 rounded-md"
               >
-                <h3 className="text-xl font-semibold">{assignment.title}</h3>
+                <h3 className="text-xl font-semibold">{assignment.name}</h3>
                 <p className="text-gray-600">{assignment.description}</p>
               </div>
             );

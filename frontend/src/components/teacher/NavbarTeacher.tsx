@@ -1,10 +1,15 @@
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import { Sheet, SheetTrigger, SheetContent } from "@/components/ui/sheet"
 import { Button } from "@/components/ui/button"
 import { SVGProps } from "react"
 import { JSX } from "react/jsx-runtime"
 
 export default function NavBarTeacher() {
+  const navigate= useNavigate();
+  function handleClick() {
+    document.cookie = "token=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/;";
+    navigate("/auth");
+  }
   return (
     <div className="flex items-center justify-between px-4 py-2 bg-[#eeeeee] h-20 ">
       <Link to="#" className="flex items-center gap-2" >
@@ -33,9 +38,9 @@ export default function NavBarTeacher() {
             <Link to="#" className="text-3xl font-medium hover:underline underline-offset-4" >
               Portfolio
             </Link>
-            <Link to="#" className="text-3xl font-medium hover:underline underline-offset-4" >
+            <div onClick={handleClick} className="text-3xl font-medium hover:underline underline-offset-4" >
               Logout
-            </Link>
+            </div>
           </div>
           </div>
         </SheetContent>

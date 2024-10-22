@@ -36,7 +36,7 @@ const Join:React.FC = () => {
         }
     }
   return (
-    <div className='h-full w-full flex justify-center items-center'>
+    <div className='h-full w-full flex justify-center items-center min-h-[calc(100vh-5rem)]'>
     <Card className="w-1/4 bg-[#eeeeee] ">
         <CardHeader>
           <CardTitle>Join a new Class!</CardTitle>
