@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
-import { Button } from "@/components/ui/button"
+import { Button } from "@/components/ui/button";
 import {
   Dialog,
   DialogContent,
@@ -10,11 +10,11 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "@/components/ui/dialog"
-import { Input } from "@/components/ui/input"
+} from "@/components/ui/dialog";
+import { Input } from "@/components/ui/input";
 import { toast } from "@/hooks/use-toast";
 import DialogForAssignment from "@/components/teacher/DialogForAssignment";
- 
+
 interface ClassDetailsProps {
   announcements: any[];
   assignments: any[];
@@ -58,6 +58,9 @@ const ClassTeacher: React.FC = () => {
   if (!classDetails) {
     return <div>Loading class details...</div>;
   }
+  function handleClick(){
+    window.location.href=`http://localhost:5173/HomePage/course/${id}/submissions`
+  }
 
   return (
     <div className="p-4 bg-[#f9f9f9]">
@@ -67,15 +70,12 @@ const ClassTeacher: React.FC = () => {
       <div className="mt-4">
         <div className="flex justify-between">
           <h2 className="text-2xl font-semibold">Announcements</h2>
-          <DialogDemo id={id}/>
+          <DialogDemo id={id} />
         </div>
         {classDetails.announcements && classDetails.announcements.length > 0 ? (
           classDetails.announcements.map((announcement: any) => {
             return (
-              <div
-                key={announcement}
-                className="bg-white p-4 mt-2 rounded-md"
-              >
+              <div key={announcement} className="bg-white p-4 mt-2 rounded-md">
                 <h3 className="text-xl font-semibold">{announcement}</h3>
               </div>
             );
@@ -88,18 +88,35 @@ const ClassTeacher: React.FC = () => {
       </div>
       <div className="mt-4">
         <div className="flex justify-between">
-        <h2 className="text-2xl font-semibold">Assignments</h2>
-        <DialogForAssignment id={id}/>
+          <h2 className="text-2xl font-semibold">Assignments</h2>
+          <DialogForAssignment id={id} />
         </div>
-        { classDetails.assignments && classDetails.assignments.length > 0 ? (
+        {classDetails.assignments && classDetails.assignments.length > 0 ? (
           classDetails.assignments.map((assignment: any) => {
             return (
               <div
                 key={assignment._id}
-                className="bg-white p-4 mt-2 rounded-md"
+                className="bg-white p-4 mt-2 rounded-md flex justify-between"
               >
-                <h3 className="text-xl font-semibold">{assignment.name}</h3>
-                <p className="text-gray-600">{assignment.description}</p>
+                <div>
+                  <h3 className="text-xl font-semibold">
+                    {assignment.name}
+                    <small className="text-xs pl-4">
+                      Created At:{" "}
+                      {new Date(assignment.createdAt).toLocaleDateString(
+                        "en-GB"
+                      )}
+                    </small>
+                    <small className="text-xs pl-4">
+                      Due At:
+                      {new Date(assignment.dueDate).toLocaleDateString(
+                        "en-GB"
+                      )}
+                    </small>
+                  </h3>
+                  <p className="text-gray-600">{assignment.description}</p>
+                </div>
+                <Button variant={"outline"} onClick={handleClick}>View Submissions</Button>
               </div>
             );
           })
@@ -117,28 +134,31 @@ interface DialogDemoProps {
 }
 
 function DialogDemo({ id }: DialogDemoProps) {
-  const[announcement,setAnnouncement]=useState("");
+  const [announcement, setAnnouncement] = useState("");
   async function handleClick() {
     try {
-      await axios.post(`http://localhost:3000/course/addAnnouncement/${id}`,{announcement},{withCredentials:true});
+      await axios.post(
+        `http://localhost:3000/course/addAnnouncement/${id}`,
+        { announcement },
+        { withCredentials: true }
+      );
       toast({
-        title:"Success",
-        variant:"default",
+        title: "Success",
+        variant: "default",
         description: "Announcement added successfully",
-      })
-    } catch (error:any) {
+      });
+    } catch (error: any) {
       toast({
-        title:"Error",
-        variant:"destructive",
+        title: "Error",
+        variant: "destructive",
         description: error.response.message,
-      })
+      });
     }
-
   }
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button variant="outline">Add Announcement</Button>
+        <Button variant="outline">Add</Button>
       </DialogTrigger>
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>
@@ -158,10 +178,12 @@ function DialogDemo({ id }: DialogDemoProps) {
           </div>
         </div>
         <DialogFooter>
-          <Button type="submit" onClick={handleClick}>Save changes</Button>
+          <Button type="submit" onClick={handleClick}>
+            Save changes
+          </Button>
         </DialogFooter>
       </DialogContent>
     </Dialog>
-  )
+  );
 }
 export default ClassTeacher;

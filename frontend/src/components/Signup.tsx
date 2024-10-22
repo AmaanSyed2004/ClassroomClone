@@ -59,6 +59,8 @@ export const Signup: React.FC<SignupProps> = ({ toggleForm }) => {
   return (
     <div>
       <h2 className="text-2xl font-bold text-center mb-4">Sign Up</h2>
+      <h2 className="text-md font-bold text-gray-600 text-center mb-4">Welcome to ClassBridge!</h2>
+
       <form onSubmit={handleSubmit} className="space-y-4">
         <div className="flex items-center space-x-4">
           <Label htmlFor="name">Name</Label>

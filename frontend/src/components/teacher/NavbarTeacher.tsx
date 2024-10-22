@@ -35,9 +35,6 @@ export default function NavBarTeacher() {
             <Link to="/HomePage/invite" className="text-3xl font-medium hover:underline underline-offset-4" >
               Invite a Student
             </Link>
-            <Link to="#" className="text-3xl font-medium hover:underline underline-offset-4" >
-              Portfolio
-            </Link>
             <div onClick={handleClick} className="text-3xl font-medium hover:underline underline-offset-4" >
               Logout
             </div>

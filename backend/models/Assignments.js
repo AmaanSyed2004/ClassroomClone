@@ -53,4 +53,3 @@ AssignmentsSchema.pre('save',function(next){
 });
 const Assignment= mongoose.model('Assignment',AssignmentsSchema);
 module.exports=Assignment;
-// Example JSON data to test the Assignments model

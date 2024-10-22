@@ -12,6 +12,9 @@ const checkStudentOrTeacher = require("../middleware/checkTeacherOrStudent");
 const addAnnouncement = require("../controllers/CourseControllers/addAnnouncement");
 const getAssignments = require("../controllers/assignmentControllers/getAssignments");
 const createAssignment = require("../controllers/assignmentControllers/createAssignment");
+const upload = require("../middleware/fileUpload");
+const addSubmission = require("../controllers/submissionControllers/addSubmission");
+const getSubmissions = require("../controllers/submissionControllers/getSubmissions");
 const router = express.Router();
 
 router.post("/create", checkTeacher, createCourse);
@@ -24,4 +27,7 @@ router.get('/get/:id',checkStudentOrTeacher ,getCourse);
 router.post('/addAnnouncement/:id', checkTeacher, addAnnouncement);
 router.get('/getAssignments',checkStudentOrTeacher, getAssignments);
 router.post('/createAssignment', checkTeacher, createAssignment);   
+router.post('/addSubmission/:id', checkStudent, upload.single("file"), addSubmission);
+router.get("/submissions",checkTeacher, getSubmissions)
+
 module.exports = router;

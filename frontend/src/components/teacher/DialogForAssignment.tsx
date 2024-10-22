@@ -49,7 +49,7 @@ function DialogForAssignment({ id }: any) {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button variant="outline">Add Assignment</Button>
+        <Button variant="outline">Add</Button>
       </DialogTrigger>
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>
