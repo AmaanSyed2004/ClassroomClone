@@ -11,3 +11,5 @@ const allowCors= (req,res,next)=>{
     }
 }
 module.exports=allowCors;
+
+

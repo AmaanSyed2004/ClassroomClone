@@ -8,7 +8,9 @@ export default function NavBar() {
   const navigate= useNavigate()
   function handleClick() {
     document.cookie = "token=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/;";
+    
     navigate("/auth");
+
   }
   return (
     <div className="flex items-center justify-between px-4 py-2 bg-[#eeeeee] h-20 ">

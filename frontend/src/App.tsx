@@ -13,12 +13,14 @@ import CreateClass from "./pages/Teacher/CreateClass";
 import ClassTeacher from "./pages/Teacher/ClassTeacher";
 import Invite from "./pages/Teacher/Invite";
 import SubmissionTeacher from "./pages/Teacher/SubmissionTeacher";
+import Landing from "./components/Landing";
 function App() {
   return (
     <>
       <Toaster />
       <BrowserRouter>
         <Routes>
+          <Route path="/" element={<Landing />} />
           <Route path="/auth" element={<Auth />} />
           <Route path="/home" element={<ProtectedRoute />}>
             <Route element={<Layout />}>
