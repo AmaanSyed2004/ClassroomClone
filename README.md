@@ -23,14 +23,14 @@ ClassBridge is a web-based classroom management application built with the MERN 
 
 ## Project Prepared By
 
-- Rikhav Satra
-- Amaan Khan
+- Rikhav Satra- 16010122256
+- Amaan Syed- 16010122261
 
 ## Clone the Repository
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/your-username/ClassBridge.git
+   git clone https://github.com/AmaanSyed2004/ClassroomClone.git
    ```
 
 2. Navigate to the project folder:
@@ -74,6 +74,6 @@ ClassBridge is a web-based classroom management application built with the MERN 
    npm start
    ```
 
-10. The server will be running on `http://localhost:5000`
+10. The server will be running on `http://localhost:3000`
 
 ---
